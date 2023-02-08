@@ -16,9 +16,6 @@ class ProductsController
 
     public static function create($input) {
         $prod = ProductBuilder::selectProduct($input);
-        $prod->setAttr();
-        $prod->setValue();
-        $prod->setUnit();
 
         $create = new Dbc;
         $create->createData($prod);

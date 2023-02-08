@@ -12,6 +12,8 @@ const APP = {
 
     let submit = document.getElementById("button-save");
 
+    let productType = document.getElementById("productType");
+
     sku.addEventListener("input", APP.testField);
     name.addEventListener("input", APP.testField);
 
@@ -19,6 +21,8 @@ const APP = {
 
     price.addEventListener("input", APP.testNumber);
     weight.addEventListener("input", APP.testNumber);
+
+    productType.addEventListener("change", APP.addFunction);
   },
 
   missingError() {
@@ -66,6 +70,92 @@ const APP = {
       }
     }
   },
+
+// This function generates content based on product's type
+
+  addFunction() {
+
+    const dvd = `
+      <br>
+      <label for="size">Size (MB) *</label>
+      <br>
+
+      <input name="size" required 
+      type="number" id="size" 
+      min="1" max="1000000000" 
+      autocomplete="off"
+      value="<?php echo $_POST['size] ?? ''; ?>">
+      <span class="check"></span>
+      <br>
+      <span id="description">Please, provide size.</span>
+      <br>`;
+
+    const furniture = `
+      <br>
+      <label for="height">Height (cm) *</label>
+      <br>
+
+      <input name="height" required 
+      type="number" id="height"
+      min="1" max="100000" 
+      autocomplete="off"
+      value="">
+      <span class="check"></span>
+      <br><br>
+      <label for="width">Width (cm) *</label>
+      <br>
+
+      <input name="width" required 
+      type="number" id="width" 
+      min="1" max="100000" 
+      autocomplete="off"
+      value="">
+      <span class="check"></span>
+      <br><br>
+      
+      <label for="length">Length (cm) *</label>
+      <br>
+
+      <input name="length" required 
+      type="number" id="length" 
+      min="1" max="100000" 
+      autocomplete="off"
+      value="">
+      <span class="check"></span>
+      <br>
+      <span id="description">Please, provide dimensions.</span>
+      <br>`;
+
+    const book = `
+      <br>
+      <label for="weight">Weight (kg) *</label>
+      <br>
+
+      <input name="weight" required
+      type="text" id="weight" 
+      minlength="1" maxlength="10" 
+      autocomplete="off"
+      value="">
+      <span class="check"></span>
+      <br>
+      <span id="description">Please, provide weight.</span>
+      <br>`;
+
+    let type = productType.value;
+    let content = document.getElementById("genContent");
+    
+    if (type === "dvd") {
+      content.innerHTML = dvd;
+    } else if (type === "furniture") {
+        content.innerHTML = furniture;
+    } else if (type === "book") {
+        content.innerHTML = book;
+    } else {
+        content.innerHTML = "";
+    }
+
+  },
+
 };
 
 document.addEventListener("DOMContentLoaded", APP.init);

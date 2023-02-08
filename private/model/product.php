@@ -1,6 +1,6 @@
 <?php
 
-abstract class Product {
+class Product {
 
     protected $userData;
     protected $name;
@@ -68,11 +68,5 @@ abstract class Product {
     public function getUnits() {
         return $this->unit;
     }
-
-    
-
-    abstract function setAttr();
-
-    abstract function setValue();
 
 }
